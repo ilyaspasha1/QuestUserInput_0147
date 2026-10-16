@@ -4,9 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.Button
 import androidx.compose.material3.CardDefaults
@@ -26,7 +24,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.pertemuan5.ui.theme.Pertemuan5Theme
 
 @Composable
 fun FormDataDiri(modifier: Modifier = Modifier) {
@@ -103,7 +103,7 @@ fun FormDataDiri(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
-            enabled = textAlmat.isNotEmpty(),
+            enabled = textNma.isNotEmpty() && textAlmat.isNotEmpty(),
             onClick = {
                 nama = textNma
                 alamat = textAlmat
@@ -126,16 +126,25 @@ fun FormDataDiri(modifier: Modifier = Modifier) {
             elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
             colors = CardDefaults.cardColors(containerColor = Color.Black),
             modifier = Modifier
-                .height(100.dp)
-                .width(300.dp)
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
         ) {
             Column(
-                modifier = Modifier.padding(horizontal = 5.dp, vertical = 15.dp)
+                modifier = Modifier.padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Text(text = "Nama: $nama", color = Color.White)
-                Text(text = "Gender: $jenis", color = Color.White)
-                Text(text = "Alamat: $alamat", color = Color.White)
+                Text(text = "Nama : $nama", color = Color.White)
+                Text(text = "Gender : $jenis", color = Color.White)
+                Text(text = "Alamat : $alamat", color = Color.White)
             }
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ActFormDataDiriPreview() {
+    Pertemuan5Theme {
+        FormDataDiri()
     }
 }
